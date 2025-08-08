@@ -129,11 +129,11 @@ const VenterPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
+    <div className="min-h-screen">
       <Toaster position="top-center" />
       
       {/* Header */}
-      <header className="py-4 px-4 sm:px-6 lg:px-8 border-b border-white/20 bg-white/10 backdrop-blur-sm">
+      <header className="py-4 px-4 sm:px-6 lg:px-8 border-b border-white/40 bg-white/50 backdrop-blur-md">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <button
             onClick={() => router.push('/')}
@@ -144,11 +144,11 @@ const VenterPage = () => {
           </button>
           
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-              <MessageCircle className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 bg-white/80 border border-white rounded-2xl flex items-center justify-center shadow-sm">
+              <MessageCircle className="w-6 h-6 text-rose-600" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900">Venting Space</h1>
+              <h1 className="text-xl font-bold text-gray-900 font-display">Venting Space</h1>
               <p className="text-sm text-gray-600">Your safe place to be heard</p>
             </div>
           </div>
@@ -158,10 +158,10 @@ const VenterPage = () => {
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Current Connection Interface */}
         {currentConnection && (
-          <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 border border-gray-100">
+          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-8 mb-8 border border-white">
             <div className="text-center">
-              <div className="w-24 h-24 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
-                <MessageCircle className="w-12 h-12 text-white" />
+              <div className="w-24 h-24 bg-gradient-to-br from-fuchsia-400 to-rose-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse shadow-lg">
+                <MessageCircle className="w-12 h-12 text-white drop-shadow" />
               </div>
               
               <h2 className="text-2xl font-bold text-gray-900 mb-2">Listener Found!</h2>
@@ -183,7 +183,8 @@ const VenterPage = () => {
               <div className="flex justify-center space-x-4 mb-6">
                 <button
                   onClick={openTelegramCall}
-                  className="bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-4 px-8 rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-lg"
+                  className="text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 text-lg"
+                  style={{ backgroundImage: 'linear-gradient(90deg, #F4C2C2, #DBABCA, #998CBA)', boxShadow: '0 8px 30px rgba(219,171,202,0.35)' }}
                 >
                   <Phone className="w-5 h-5 inline mr-2" />
                   Vent Now
@@ -191,7 +192,7 @@ const VenterPage = () => {
                 
                 <button
                   onClick={endConnection}
-                  className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-4 px-6 rounded-xl transition-all duration-200"
+                  className="bg-white/70 hover:bg-white text-gray-700 font-semibold py-4 px-6 rounded-full transition-all duration-200 shadow-sm border border-white"
                 >
                   End Connection
                 </button>
@@ -215,9 +216,9 @@ const VenterPage = () => {
         {!currentConnection && (
           <div className="text-center">
             {!isInQueue ? (
-              <div className="bg-white rounded-2xl shadow-xl p-12 border border-gray-100">
-                <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-8">
-                  <MessageCircle className="w-10 h-10 text-white" />
+              <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-12 border border-white">
+                <div className="w-20 h-20 bg-gradient-to-br from-fuchsia-500 to-rose-500 rounded-2xl flex items-center justify-center mx-auto mb-8">
+                  <MessageCircle className="w-10 h-10 text-white drop-shadow" />
                 </div>
                 
                 <h2 className="text-3xl font-bold text-gray-900 mb-4">Ready to Share?</h2>
@@ -229,7 +230,8 @@ const VenterPage = () => {
                 
                 <button
                   onClick={joinQueue}
-                  className="bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-4 px-12 rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-lg"
+                  className="text-white font-semibold py-4 px-12 rounded-full transition-all duration-300 transform hover:scale-105 text-lg"
+                  style={{ backgroundImage: 'linear-gradient(90deg, #F4C2C2, #DBABCA, #998CBA)', boxShadow: '0 8px 30px rgba(219,171,202,0.35)' }}
                 >
                   <Heart className="w-5 h-5 inline mr-2" />
                   Find a Listener
@@ -269,8 +271,8 @@ const VenterPage = () => {
                 </div>
               </div>
             ) : (
-              <div className="bg-white rounded-2xl shadow-xl p-12 border border-gray-100">
-                <div className="w-20 h-20 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-8 animate-pulse">
+              <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-12 border border-white">
+                <div className="w-20 h-20 bg-gradient-to-br from-fuchsia-400 to-rose-500 rounded-2xl flex items-center justify-center mx-auto mb-8 animate-pulse">
                   <Users className="w-10 h-10 text-white" />
                 </div>
                 
@@ -329,7 +331,7 @@ const VenterPage = () => {
                 
                 <button
                   onClick={leaveQueue}
-                  className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-8 rounded-xl transition-all duration-300"
+                  className="bg-white/70 hover:bg-white text-gray-700 font-semibold py-3 px-8 rounded-full transition-all duration-300 shadow-sm border border-white"
                 >
                   Leave Queue
                 </button>

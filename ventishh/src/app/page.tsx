@@ -32,7 +32,7 @@ const LandingPage = () => {
       
       toast.dismiss();
       toast.success(`Welcome, ${role}!`);
-    } catch (error) {
+    } catch {
       toast.dismiss();
       toast.error('Something went wrong. Please try again.');
       setIsLoading(false);
@@ -40,17 +40,24 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen">
       <Toaster position="top-center" />
       
       {/* Header */}
       <header className="py-6 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
-              <Heart className="w-6 h-6 text-white" />
+            <div className="w-12 h-12 bg-white/70 backdrop-blur rounded-2xl flex items-center justify-center shadow-md border border-white/50 animate-[float_6s_ease-in-out_infinite]">
+              <Heart className="w-6 h-6" style={{ color: '#DBABCA' }} />
             </div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+            <h1
+              className="text-3xl font-extrabold font-display tracking-tight bg-clip-text text-transparent"
+              style={{
+                backgroundImage: 'linear-gradient(90deg, #DBABCA, #998CBA)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}
+            >
               Ventishh
             </h1>
           </div>
@@ -61,9 +68,16 @@ const LandingPage = () => {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 font-display">
             Your Safe Space to
-            <span className="block bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+            <span
+              className="block bg-clip-text text-transparent"
+              style={{
+                backgroundImage: 'linear-gradient(90deg, #DBABCA, #998CBA)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}
+            >
               Be Heard
             </span>
           </h2>
@@ -74,17 +88,17 @@ const LandingPage = () => {
           </p>
 
           {/* Feature highlights */}
-          <div className="flex flex-wrap justify-center gap-6 mb-12">
-            <div className="flex items-center space-x-2 text-gray-700">
-              <Shield className="w-5 h-5 text-green-600" />
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            <div className="flex items-center space-x-2 text-gray-700 bg-white/70 backdrop-blur px-4 py-2 rounded-full shadow-sm border border-white/60">
+              <Shield className="w-5 h-5" style={{ color: '#D8BFD8' }} />
               <span className="font-medium">100% Anonymous</span>
             </div>
-            <div className="flex items-center space-x-2 text-gray-700">
-              <Mic className="w-5 h-5 text-blue-600" />
+            <div className="flex items-center space-x-2 text-gray-700 bg-white/70 backdrop-blur px-4 py-2 rounded-full shadow-sm border border-white/60">
+              <Mic className="w-5 h-5" style={{ color: '#E6C7A6' }} />
               <span className="font-medium">Voice Only</span>
             </div>
-            <div className="flex items-center space-x-2 text-gray-700">
-              <Heart className="w-5 h-5 text-purple-600" />
+            <div className="flex items-center space-x-2 text-gray-700 bg-white/70 backdrop-blur px-4 py-2 rounded-full shadow-sm border border-white/60">
+              <Heart className="w-5 h-5" style={{ color: '#DBABCA' }} />
               <span className="font-medium">Judgment Free</span>
             </div>
           </div>
@@ -94,11 +108,11 @@ const LandingPage = () => {
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
           {/* Venter Card */}
           <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
-            <div className="relative bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100">
+            <div className="absolute -inset-1 rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition duration-300" style={{ backgroundImage: 'linear-gradient(90deg, #F4C2C2, #DBABCA, #998CBA)' }}></div>
+            <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-white">
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <MessageCircle className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg" style={{ backgroundImage: 'linear-gradient(135deg, #F4C2C2, #DBABCA)' }}>
+                  <MessageCircle className="w-8 h-8 text-white drop-shadow" />
                 </div>
                 
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">I need to vent</h3>
@@ -111,7 +125,8 @@ const LandingPage = () => {
                 <button
                   onClick={() => handleRoleSelection('venter')}
                   disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-4 px-8 rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="w-full text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  style={{ backgroundImage: 'linear-gradient(90deg, #F4C2C2, #DBABCA, #998CBA)', boxShadow: '0 8px 30px rgba(219,171,202,0.35)' }}
                 >
                   {isLoading ? 'Connecting...' : 'Find a Listener'}
                 </button>
@@ -126,11 +141,11 @@ const LandingPage = () => {
 
           {/* Listener Card */}
           <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
-            <div className="relative bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100">
+            <div className="absolute -inset-1 rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition duration-300" style={{ backgroundImage: 'linear-gradient(90deg, #E6C7A6, #FAEAC5, #DBABCA)' }}></div>
+            <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-white">
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Headphones className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg" style={{ backgroundImage: 'linear-gradient(135deg, #E6C7A6, #FAEAC5)' }}>
+                  <Headphones className="w-8 h-8 text-white drop-shadow" />
                 </div>
                 
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">I want to listen</h3>
@@ -143,7 +158,8 @@ const LandingPage = () => {
                 <button
                   onClick={() => handleRoleSelection('listener')}
                   disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-4 px-8 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="w-full text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  style={{ backgroundImage: 'linear-gradient(90deg, #E6C7A6, #FAEAC5, #DBABCA)', boxShadow: '0 8px 30px rgba(230,199,166,0.35)' }}
                 >
                   {isLoading ? 'Connecting...' : 'Start Listening'}
                 </button>
@@ -163,8 +179,8 @@ const LandingPage = () => {
           
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="text-center">
-              <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <span className="text-xl font-bold text-purple-600">1</span>
+              <div className="w-12 h-12 bg-rose-100 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
+                <span className="text-xl font-bold text-rose-600">1</span>
               </div>
               <h4 className="font-semibold text-gray-900 mb-2">Choose Your Role</h4>
               <p className="text-gray-600 text-sm">
@@ -173,8 +189,8 @@ const LandingPage = () => {
             </div>
             
             <div className="text-center">
-              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <span className="text-xl font-bold text-blue-600">2</span>
+              <div className="w-12 h-12 bg-sky-100 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
+                <span className="text-xl font-bold text-sky-600">2</span>
               </div>
               <h4 className="font-semibold text-gray-900 mb-2">Get Matched</h4>
               <p className="text-gray-600 text-sm">
@@ -183,8 +199,8 @@ const LandingPage = () => {
             </div>
             
             <div className="text-center">
-              <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <span className="text-xl font-bold text-green-600">3</span>
+              <div className="w-12 h-12 bg-violet-100 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
+                <span className="text-xl font-bold text-violet-600">3</span>
               </div>
               <h4 className="font-semibold text-gray-900 mb-2">Connect & Talk</h4>
               <p className="text-gray-600 text-sm">
@@ -198,18 +214,18 @@ const LandingPage = () => {
       {/* Platform Stats */}
       {queueStatus && (
         <div className="mt-16 mb-8">
-          <div className="bg-white rounded-2xl shadow-lg p-6 max-w-2xl mx-auto border border-gray-100">
+          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-lg p-6 max-w-2xl mx-auto border border-white">
             <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">
               🌟 Live Platform Status
             </h3>
             
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600">{queueStatus.listeners.count}</div>
+                <div className="text-3xl font-extrabold text-indigo-600">{queueStatus.listeners.count}</div>
                 <div className="text-sm text-gray-600">Online Listeners</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-purple-600">{queueStatus.venters.count}</div>
+                <div className="text-3xl font-extrabold text-rose-600">{queueStatus.venters.count}</div>
                 <div className="text-sm text-gray-600">Waiting Venters</div>
               </div>
             </div>
@@ -223,7 +239,7 @@ const LandingPage = () => {
                   {queueStatus.listeners.data.map((listener, index) => (
                     <div
                       key={listener.id}
-                      className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium"
+                      className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-medium"
                     >
                       {listener.username || `Listener ${index + 1}`}
                     </div>

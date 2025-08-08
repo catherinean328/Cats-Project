@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -10,6 +10,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const brandSerif = Playfair_Display({
+  variable: "--font-brand-serif",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -24,9 +30,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      <body className={`${geistSans.variable} ${geistMono.variable} ${brandSerif.variable} antialiased relative overflow-x-hidden`}
       >
+        {/* Animated gradient blobs background */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+          {/* Pastel blobs tuned to tea/rose palette */}
+          <div className="absolute -top-24 -left-24 h-80 w-80 rounded-full bg-gradient-to-br from-[#F4C2C2] via-[#DBABCA] to-[#FAEAC5] blur-3xl opacity-60 animate-[blob_14s_infinite]" />
+          <div className="absolute top-40 -right-24 h-80 w-80 rounded-full bg-gradient-to-br from-[#D8BFD8] via-[#DDA0DD] to-[#EE82EE] blur-3xl opacity-45 animate-[blob_16s_infinite]" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-gradient-to-br from-[#E6C7A6] via-[#FAEAC5] to-[#DBABCA] blur-3xl opacity-50 animate-[blob_18s_infinite]" />
+          <div className="absolute inset-0 grid-overlay opacity-50" />
+        </div>
         {children}
       </body>
     </html>

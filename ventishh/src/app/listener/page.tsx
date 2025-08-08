@@ -138,11 +138,11 @@ const ListenerPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div className="min-h-screen">
       <Toaster position="top-center" />
       
       {/* Header */}
-      <header className="py-4 px-4 sm:px-6 lg:px-8 border-b border-white/20 bg-white/10 backdrop-blur-sm">
+      <header className="py-4 px-4 sm:px-6 lg:px-8 border-b border-white/40 bg-white/50 backdrop-blur-md">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <button
             onClick={() => router.push('/')}
@@ -153,11 +153,11 @@ const ListenerPage = () => {
           </button>
           
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center">
-              <Headphones className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 bg-white/80 border border-white rounded-2xl flex items-center justify-center shadow-sm">
+              <Headphones className="w-6 h-6 text-indigo-600" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900">Listener Mode</h1>
+              <h1 className="text-xl font-bold text-gray-900 font-display">Listener Mode</h1>
               <p className="text-sm text-gray-600">Ready to help others</p>
             </div>
           </div>
@@ -167,10 +167,10 @@ const ListenerPage = () => {
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Current Connection Interface */}
         {currentConnection && (
-          <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 border border-gray-100">
+          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-8 mb-8 border border-white">
             <div className="text-center">
-              <div className="w-24 h-24 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
-                <MessageCircle className="w-12 h-12 text-white" />
+              <div className="w-24 h-24 bg-gradient-to-br from-emerald-400 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse shadow-lg">
+                <MessageCircle className="w-12 h-12 text-white drop-shadow" />
               </div>
               
               <h2 className="text-2xl font-bold text-gray-900 mb-2">Connected!</h2>
@@ -209,10 +209,10 @@ const ListenerPage = () => {
 
         {/* Telegram Username Input */}
         {showTelegramInput && (
-          <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 border border-gray-100">
+          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-8 mb-8 border border-white">
             <div className="text-center">
-              <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <MessageCircle className="w-10 h-10 text-white" />
+              <div className="w-20 h-20 bg-gradient-to-br from-indigo-500 to-fuchsia-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <MessageCircle className="w-10 h-10 text-white drop-shadow" />
               </div>
               
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Connect Your Telegram</h2>
@@ -232,7 +232,7 @@ const ListenerPage = () => {
                   value={telegramUsername}
                   onChange={(e) => setTelegramUsername(e.target.value)}
                   placeholder="@yourusername"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-center text-lg text-black"
+                  className="w-full px-4 py-3 border border-white rounded-full bg-white/70 backdrop-blur placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-center text-lg text-black shadow-sm"
                 />
                 <p className="text-xs text-gray-500 mt-2">
                   Make sure this matches your exact Telegram username (including @)
@@ -242,13 +242,14 @@ const ListenerPage = () => {
               <div className="flex space-x-4 justify-center">
                 <button
                   onClick={() => setShowTelegramInput(false)}
-                  className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-6 rounded-xl transition-all duration-200"
+                  className="bg-white/70 hover:bg-white text-gray-700 font-semibold py-3 px-6 rounded-full transition-all duration-200 shadow-sm border border-white"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleTelegramSubmit}
-                  className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 px-8 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300"
+                  className="text-white font-semibold py-3 px-8 rounded-full transition-all duration-300"
+                  style={{ backgroundImage: 'linear-gradient(90deg, #E6C7A6, #FAEAC5, #DBABCA)', boxShadow: '0 8px 30px rgba(230,199,166,0.35)' }}
                 >
                   Start Listening
                 </button>
@@ -261,7 +262,7 @@ const ListenerPage = () => {
         {!currentConnection && (
           <div className="text-center">
             {!isInQueue ? (
-              <div className="bg-white rounded-2xl shadow-xl p-12 border border-gray-100">
+              <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-12 border border-white">
                 <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-8">
                   <Headphones className="w-10 h-10 text-white" />
                 </div>
@@ -275,7 +276,8 @@ const ListenerPage = () => {
                 
                 <button
                   onClick={handleStartListening}
-                  className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-4 px-12 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-lg"
+                  className="text-white font-semibold py-4 px-12 rounded-full transition-all duration-300 transform hover:scale-105 text-lg"
+                  style={{ backgroundImage: 'linear-gradient(90deg, #E6C7A6, #FAEAC5, #DBABCA)', boxShadow: '0 8px 30px rgba(230,199,166,0.35)' }}
                 >
                   <Heart className="w-5 h-5 inline mr-2" />
                   Start Listening
@@ -308,7 +310,7 @@ const ListenerPage = () => {
                 </div>
               </div>
             ) : (
-              <div className="bg-white rounded-2xl shadow-xl p-12 border border-gray-100">
+              <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-12 border border-white">
                 <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-8 animate-pulse">
                   <Users className="w-10 h-10 text-white" />
                 </div>
@@ -347,7 +349,7 @@ const ListenerPage = () => {
                 
                 <button
                   onClick={leaveQueue}
-                  className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-8 rounded-xl transition-all duration-300"
+                  className="bg-white/70 hover:bg-white text-gray-700 font-semibold py-3 px-8 rounded-full transition-all duration-300 shadow-sm border border-white"
                 >
                   Leave Queue
                 </button>
