@@ -2,17 +2,17 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { MessageCircle, Users, Clock, ArrowLeft, Heart, Phone, Shield } from 'lucide-react';
+import { MessageCircle, Users, ArrowLeft, Heart, Phone, Shield } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useUser } from '@/hooks/useUser';
-import { QueueAPI } from '@/lib/api';
+import { QueueAPI, ActiveConnection } from '@/lib/api';
 import { useQueuePolling } from '@/hooks/useQueuePolling';
 
 const VenterPage = () => {
   const router = useRouter();
   const { user, isLoading } = useUser('venter');
   const [isInQueue, setIsInQueue] = useState(false);
-  const [currentConnection, setCurrentConnection] = useState<any>(null);
+  const [currentConnection, setCurrentConnection] = useState<ActiveConnection | null>(null);
 
   // Use polling for real-time updates
   const { queueStatus } = useQueuePolling({
@@ -28,8 +28,8 @@ const VenterPage = () => {
         });
       }
     },
-    onError: (error) => {
-      console.error('Polling error:', error);
+    onError: (err) => {
+      console.error('Polling error:', err);
     },
   });
 
@@ -91,7 +91,7 @@ const VenterPage = () => {
       await QueueAPI.leaveQueue();
       setIsInQueue(false);
       toast('Left the queue', { icon: '👋' });
-    } catch (error) {
+    } catch {
       toast.error('Failed to leave queue');
     }
   };
@@ -111,7 +111,7 @@ const VenterPage = () => {
             icon: '🌟',
           });
         }, 2000);
-      } catch (error) {
+      } catch {
         toast.error('Failed to end connection');
       }
     }

@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { QueueAPI, QueueStatus } from '@/lib/api';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { QueueAPI, QueueStatus, ActiveConnection } from '@/lib/api';
 
 interface UseQueuePollingOptions {
   enabled?: boolean;
   interval?: number; // milliseconds
-  onConnectionFound?: (connection: any) => void;
+  onConnectionFound?: (connection: ActiveConnection) => void;
   onError?: (error: Error) => void;
 }
 
@@ -25,7 +25,7 @@ export const useQueuePolling = (options: UseQueuePollingOptions = {}) => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const lastConnectionId = useRef<string | null>(null);
 
-  const fetchQueueStatus = async () => {
+  const fetchQueueStatus = useCallback(async () => {
     if (!enabled) return;
 
     try {
@@ -48,23 +48,23 @@ export const useQueuePolling = (options: UseQueuePollingOptions = {}) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [enabled, onConnectionFound, onError]);
 
   // Start polling
-  const startPolling = () => {
+  const startPolling = useCallback(() => {
     if (intervalRef.current) return; // Already polling
     
     fetchQueueStatus(); // Immediate fetch
     intervalRef.current = setInterval(fetchQueueStatus, interval);
-  };
+  }, [fetchQueueStatus, interval]);
 
   // Stop polling
-  const stopPolling = () => {
+  const stopPolling = useCallback(() => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
     }
-  };
+  }, []);
 
   // Effect to handle enabled state
   useEffect(() => {
@@ -75,12 +75,12 @@ export const useQueuePolling = (options: UseQueuePollingOptions = {}) => {
     }
 
     return () => stopPolling();
-  }, [enabled, interval]);
+  }, [enabled, interval, startPolling, stopPolling]);
 
   // Cleanup on unmount
   useEffect(() => {
     return () => stopPolling();
-  }, []);
+  }, [stopPolling]);
 
   return {
     queueStatus,

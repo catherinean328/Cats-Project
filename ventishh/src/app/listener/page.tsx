@@ -5,14 +5,14 @@ import { useRouter } from 'next/navigation';
 import { Headphones, Users, Clock, ArrowLeft, Heart, MessageCircle } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useUser } from '@/hooks/useUser';
-import { QueueAPI } from '@/lib/api';
+import { QueueAPI, ActiveConnection } from '@/lib/api';
 import { useQueuePolling } from '@/hooks/useQueuePolling';
 
 const ListenerPage = () => {
   const router = useRouter();
   const { user, isLoading, updateUserTelegramUsername } = useUser('listener');
   const [isInQueue, setIsInQueue] = useState(false);
-  const [currentConnection, setCurrentConnection] = useState<any>(null);
+  const [currentConnection, setCurrentConnection] = useState<ActiveConnection | null>(null);
   const [telegramUsername, setTelegramUsername] = useState('');
   const [showTelegramInput, setShowTelegramInput] = useState(false);
 
@@ -30,8 +30,8 @@ const ListenerPage = () => {
         });
       }
     },
-    onError: (error) => {
-      console.error('Polling error:', error);
+    onError: (err) => {
+      console.error('Polling error:', err);
     },
   });
 
@@ -91,7 +91,7 @@ const ListenerPage = () => {
       await QueueAPI.leaveQueue();
       setIsInQueue(false);
       toast('You\'re no longer available', { icon: '👋' });
-    } catch (error) {
+    } catch {
       toast.error('Failed to leave queue');
     }
   };
@@ -120,7 +120,7 @@ const ListenerPage = () => {
             icon: '💙',
           });
         }, 2000);
-      } catch (error) {
+      } catch {
         toast.error('Failed to end connection');
       }
     }

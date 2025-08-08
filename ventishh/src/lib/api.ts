@@ -2,6 +2,12 @@
 
 import { QueueUser, Connection } from '@/lib/db';
 
+// Strongly typed active connection shape used across the app
+export type ActiveConnection = Connection & {
+  listenerUser: QueueUser;
+  venterUser: QueueUser;
+};
+
 // Generate a session ID for the browser
 export function getSessionId(): string {
   if (typeof window === 'undefined') return '';
@@ -102,17 +108,11 @@ export interface QueueStatus {
       joinedAt: string;
     }>;
   };
-  activeConnection?: Connection & {
-    listenerUser: QueueUser;
-    venterUser: QueueUser;
-  };
+  activeConnection?: ActiveConnection;
 }
 
 export interface JoinQueueResponse {
   user: QueueUser;
   matched: boolean;
-  connection?: Connection & {
-    listenerUser: QueueUser;
-    venterUser: QueueUser;
-  };
+  connection?: ActiveConnection;
 }
