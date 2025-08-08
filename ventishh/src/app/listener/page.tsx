@@ -232,7 +232,7 @@ const ListenerPage = () => {
                   value={telegramUsername}
                   onChange={(e) => setTelegramUsername(e.target.value)}
                   placeholder="@yourusername"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-center text-lg"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-center text-lg text-black"
                 />
                 <p className="text-xs text-gray-500 mt-2">
                   Make sure this matches your exact Telegram username (including @)
